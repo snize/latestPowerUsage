@@ -1,0 +1,69 @@
+<head>
+    <meta charset="UTF-8">
+    <title>電力使用状況</title>
+    <link rel="stylesheet" href="./components/bootstrap/docs/assets/css/bootstrap.css"/>
+</head>
+<body>
+
+{{> template_navbar}}
+
+<div class="container">
+
+    <div>
+
+        {{> template_sidebar}}
+
+        {{> template_main}}
+    </div>
+</div>
+</body>
+
+<template name="template_navbar">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand">電力使用状況</a>
+            <ul class="nav">
+                <li><a href="./angular.html">AngularJS</a></li>
+                <li class="active"><a href="/">MeteorJS</a></li>
+            </ul>
+        </div>
+    </div>
+</template>
+
+<template name="template_sidebar">
+    <div class="span2">
+        {{#each plants}}
+     <span>
+            <label class="radio">
+                <input type="radio"
+                       name="myplant"
+                       value="{{this.key}}"> {{this.name}}電力
+            </label></span>
+        {{/each}}
+    </div>
+</template>
+
+<template name="template_main">
+    <div class="span6">
+        <dl>
+            <dt>地域</dt>
+            <dd>{{results.Area}}</dd>
+        </dl>
+        <dl>
+            <dt>電力使用量</dt>
+            <dd>{{results.Usage.$}} KW</dd>
+        </dl>
+        <dl>
+            <dt>最大供給量</dt>
+            <dd>{{results.Capacity.$}} KW</dd>
+        </dl>
+        <dl>
+            <dt>集計対象日</dt>
+            <dd>{{results.Date}}</dd>
+        </dl>
+        <dl>
+            <dt>集計対象時</dt>
+            <dd>{{results.Hour}}:00</dd>
+        </dl>
+    </div>
+</template>
